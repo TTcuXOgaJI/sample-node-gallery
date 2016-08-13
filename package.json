@@ -1,0 +1,17 @@
+{
+  "name": "sample-node-gallery",
+  "version": "1.0.0",
+  "description": "sample image gallery",
+  "main": "index.js",
+  "dependencies": {
+    "formidable": "^1.0.17",
+    "mv": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
