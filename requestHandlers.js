@@ -26,7 +26,7 @@ function start(response) {
         '<nav class="navbar navbar-default navbar-fixed-top text-center" style="height: 120px;"> <div class=" text-center" style="margin-top: 25px;"><strong style="font-size: 40px;">Simple Image Gallery</strong></div></nav>' +
         '<div class="container text-center">' +
         '<div id="msg"></div>' +
-        '<form action="/upload" enctype="multipart/form-data" method="post" name="uploadForm" onsubmit="return validateForm()">' +
+        '<form action="/upload" enctype="multipart/form-data" method="post" name="uploadForm">' +
         '<div class="form-group">' +
         '<label class="btn btn-info btn-file" style="width: 300px; height: 80px; margin-right: 5px;">' +
         '<div class="text-center" style="margin-top: 5px; font-size: 40px;"><strong>Browse Image</strong></div> <input type="file" name="upload" style="display: none;" onchange="isUploaded(this);" />' +
