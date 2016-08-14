@@ -6,7 +6,10 @@ var querystring = require("querystring"),
     mv = require('mv'),
     imageTypes = ['.png', '.jpg', '.gif'];
 
-
+/**
+ * Handler for home page request.
+ * @param response
+ */
 function start(response) {
     console.log("Request handler 'start' was called.");
     var body = '<html>' +
@@ -42,6 +45,12 @@ function start(response) {
     response.end();
 
 }
+
+/**
+ * Handler for uploading new image request
+ * @param response
+ * @param request
+ */
 function upload(response, request) {
     console.log("Request handler 'upload' was called.");
     var form = new formidable.IncomingForm(),
@@ -61,6 +70,7 @@ function upload(response, request) {
             content = '<img style="max-width: 460px;max-height: 345px;border: 1px solid black;border-radius: 10px;" src="/showImage?Image=' + files.upload.name + '">';
 
         }
+        // If was entered wrong format not .jpg , .png or .gif.
         else {
             content = '<div class="alert alert-danger" style="font-size: 50px;">' +
                 '<strong>Error!</strong> Wrong file format.' +
@@ -86,11 +96,18 @@ function upload(response, request) {
     });
 }
 
+/**
+ * Handler for image gallery request.
+ * @param response
+ */
 function showImagesGallery(response) {
     var imageDir = "./images/",
         galleryHideStatus = "hidden",
         alertHideStatus = "";
 
+    /**
+     * Get images from chosen directory and build page with bootstrap carousel with images in it.
+     */
     getAllImagesFromDirectory(imageDir, function (err, files) {
         if (files.length > 0) {
             var carouselIndicatorsInnerHTML = '';
@@ -162,7 +179,11 @@ function showImagesGallery(response) {
     });
 }
 
-
+/**
+ * Gets images directory and pass array of images name + type to callback function.
+ * @param imageDir
+ * @param callback
+ */
 function getAllImagesFromDirectory(imageDir, callback) {
     var files = [];
     fs.readdir(imageDir, function (err, list) {
@@ -178,6 +199,11 @@ function getAllImagesFromDirectory(imageDir, callback) {
 
 }
 
+/**
+ * Handler for image request.
+ * @param response
+ * @param request
+ */
 function showImage(response, request) {
     var query = url.parse(request.url).query,
         params = querystring.parse(query);
@@ -185,6 +211,11 @@ function showImage(response, request) {
     fs.createReadStream("./images/" + params.Image).pipe(response);
 }
 
+/**
+ * Handler for delete image request.
+ * @param response
+ * @param request
+ */
 function deleteImage(response, request) {
     var query = url.parse(request.url).query,
         params = querystring.parse(query);
