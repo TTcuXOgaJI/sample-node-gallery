@@ -23,7 +23,7 @@ function start(response) {
         '}' +
         '</' +
         'script > ' +
-        '<body style="padding-top: 200px;">' +
+        '<body style="padding-top: 150px;">' +
         '<nav class="navbar navbar-default navbar-fixed-top text-center" style="height: 120px;"> <div class=" text-center" style="margin-top: 25px;"><strong style="font-size: 40px;">Simple Image Gallery</strong></div></nav>' +
         '<div class="container text-center">' +
         '<div id="msg"></div>' +
@@ -72,7 +72,7 @@ function upload(response, request) {
             '<meta http-equiv="content-type" content="text/html" charset="UTF-8" />' +
             '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">' +
             '</head>' +
-            '<body style="padding-top: 200px;">' +
+            '<body style="padding-top: 150px;">' +
             '<nav class="navbar navbar-default navbar-fixed-top text-center"  style="height: 120px;"> <div class=" text-center" style="margin-top: 25px;"><strong style="font-size: 40px;">Uploaded Image</strong></div></nav>' +
             '<div class="container text-center">' +
             content +
@@ -131,7 +131,7 @@ function showImagesGallery(response) {
             '}' +
             '</style>' +
             '</head>' +
-            '<body style="padding-top: 200px;">' +
+            '<body style="padding-top: 150px;">' +
             '<nav class="navbar navbar-default navbar-fixed-top text-center" style="height: 120px;"> <div class=" text-center" style="margin-top: 25px;"><strong style="font-size: 40px;">Simple Image Gallery</strong></div></nav>' +
             '<div class="container">' +
             '<div  id="myCarousel" class="carousel slide" data-ride="carousel" ' + galleryHideStatus + '>' +
@@ -195,7 +195,7 @@ function deleteImage(response, request) {
         '<meta http-equiv="content-type" content="text/html" charset="UTF-8" />' +
         '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">' +
         '</head>' +
-        '<body style="padding-top: 200px;">' +
+        '<body style="padding-top: 150px;">' +
         '<nav class="navbar navbar-default navbar-fixed-top text-center" style="height: 120px;"> <div class=" text-center" style="margin-top: 15px;"></div></nav>' +
         '<div class="container text-center">' +
         '<div class="alert alert-success">' +
