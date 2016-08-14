@@ -7,6 +7,11 @@ function start(route, handle) {
         if (pathname != "/favicon.ico") {
             console.log("Request for " + pathname + " received .");
             route(handle, pathname, response, request);
+        }else{
+            response.writeHead(200, {'Content-Type': 'image/x-icon'} );
+            response.end();
+            console.log('favicon requested');
+            return;
         }
     }
 
