@@ -23,19 +23,19 @@ function start(response) {
         '}' +
         '</' +
         'script > ' +
-        '<body style="padding-top: 70px;">' +
-        '<nav class="navbar navbar-default navbar-fixed-top text-center"> <div class=" text-center" style="margin-top: 15px;">Simple Image Gallery</div></nav>' +
+        '<body style="padding-top: 200px;">' +
+        '<nav class="navbar navbar-default navbar-fixed-top text-center" style="height: 120px;"> <div class=" text-center" style="margin-top: 25px;"><strong style="font-size: 40px;">Simple Image Gallery</strong></div></nav>' +
         '<div class="container text-center">' +
         '<div id="msg"></div>' +
         '<form action="/upload" enctype="multipart/form-data" method="post" name="uploadForm" onsubmit="return validateForm()">' +
         '<div class="form-group">' +
-        '<label class="btn btn-default btn-file" style="width: 120px;margin-right: 5px;">' +
-        'Browse Image <input type="file" name="upload" style="display: none;">' +
+        '<label class="btn btn-info btn-file" style="width: 300px; height: 80px; margin-right: 5px;">' +
+        '<div class="text-center" style="margin-top: 5px; font-size: 40px;"><strong>Browse Image</strong></div> <input type="file" name="upload" style="display: none; ">' +
         '</label>' +
-        '<input class="btn btn-default" style="width: 120px;margin-left: 5px;" type="submit" value="Upload"/>' +
+        '<input class="btn btn-success" style="width: 300px;height: 80px; margin-left: 5px; font-size: 40px;font-weight: bold" type="submit" value="Upload"/>' +
         '</div>' +
         '</form>' +
-        '<a class="btn btn-info" style="width: 250px;" role="button" href="/showImagesGallery">Show Gallery</a>' +
+        '<a class="btn btn-primary" style="width: 610px;height: 80px;" role="button" href="/showImagesGallery"><strong style="font-size: 40px;">Show Gallery</strong></a>' +
         '</div>' +
         '</body>';
     response.writeHead(200, {"Content-Type": "text/html"});
@@ -63,7 +63,7 @@ function upload(response, request) {
 
         }
         else {
-            content = '<div class="alert alert-danger">' +
+            content = '<div class="alert alert-danger" style="font-size: 50px;">' +
                 '<strong>Error!</strong> Wrong file format.' +
                 '</div>';
         }
@@ -72,13 +72,13 @@ function upload(response, request) {
             '<meta http-equiv="content-type" content="text/html" charset="UTF-8" />' +
             '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">' +
             '</head>' +
-            '<body style="padding-top: 70px;">' +
-            '<nav class="navbar navbar-default navbar-fixed-top text-center"> <div class=" text-center" style="margin-top: 15px;">Uploaded Image</div></nav>' +
+            '<body style="padding-top: 200px;">' +
+            '<nav class="navbar navbar-default navbar-fixed-top text-center"  style="height: 120px;"> <div class=" text-center" style="margin-top: 25px;"><strong style="font-size: 40px;">Uploaded Image</strong></div></nav>' +
             '<div class="container text-center">' +
             content +
             '<hr style=" border-style: solid none;border-width: 1px 0;">' +
-            '<a class="btn btn-info" style="width: 250px;" role="button" href="/">Home</a>' +
-            '<a class="btn btn-info" style="width: 250px;" role="button" href="/showImagesGallery">Show Gallery</a>' +
+            '<a class="btn btn-info" style="width: 300px;height: 80px; margin-right: 5px; font-size: 40px;font-weight: bold" role="button" href="/">Home</a>' +
+            '<a class="btn btn-info" style="width: 300px;height: 80px; margin-left: 5px; font-size: 40px;font-weight: bold" role="button" href="/showImagesGallery">Show Gallery</a>' +
             '</div>' +
             '</body>';
         response.writeHead(200, {"Content-Type": "text/html"});
@@ -88,27 +88,41 @@ function upload(response, request) {
 }
 
 function showImagesGallery(response) {
-    var imageDir = "./images/";
+    var imageDir = "./images/",
+        galleryHideStatus = "hidden",
+        alertHideStatus = "";
 
     getAllImagesFromDirectory(imageDir, function (err, files) {
-        if ( files.length > 0) {
+        if (files.length > 0) {
             var carouselIndicatorsInnerHTML = '';
             var carouselInnerHTML = '';
             carouselIndicatorsInnerHTML = carouselIndicatorsInnerHTML + '<li data-target="#myCarousel" data-slide-to="0" class="active"></li>';
-            carouselInnerHTML = carouselInnerHTML + '<div class="item active"><img style="width: 460px;height: 345px;margin:0 auto;" src="/showImage?Image=' + files[0] + '" alt="' + files[0] + '"><div class="carousel-caption"><h3>' + files[0] + '</h3></div></div>';
+            carouselInnerHTML = carouselInnerHTML + '<div class="item active"><img style="width: 800px;height: 600px;margin:0 auto;" src="/showImage?Image=' + files[0] + '" alt="' + files[0] + '"><div class="carousel-caption"><h3>' + files[0] + '</h3></div></div>';
 
             for (var i = 1; i < files.length; i++) {
                 carouselIndicatorsInnerHTML = carouselIndicatorsInnerHTML + '<li data-target="#myCarousel" data-slide-to="' + i + '"></li>';
-                carouselInnerHTML = carouselInnerHTML + '<div class="item"><img  style="width: 460px;height: 345px;margin:0 auto;" src="/showImage?Image=' + files[i] + '" alt="' + files[i] + '"><div class="carousel-caption"><h3>' + files[i] + '</h3></div></div>';
-                // imageLists += '<li><img style="width: 100px;height: 100px;" src="/showImage?Image=' + files[i] + '" data-image-name="' + files[i] + '">' + files[i] + '</li>';
+                carouselInnerHTML = carouselInnerHTML + '<div class="item"><img  style="width: 800px;height: 600px;margin:0 auto;" src="/showImage?Image=' + files[i] + '" alt="' + files[i] + '"><div class="carousel-caption"><h3>' + files[i] + '</h3></div></div>';
             }
-            // imageLists += '</ul>';
+            galleryHideStatus = "";
+            alertHideStatus = "hidden";
         }
         var body = '<head>' +
             '<meta http-equiv="content-type" content="text/html" charset="UTF-8" />' +
             '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">' +
-            ' <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>' +
+            '<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>' +
             '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>' +
+            '<script>' +
+            'function getSelectedImageInCarousel(element) {' +
+            'var selectedImage = element.href;' +
+            'if(document.getElementsByClassName("item active").length > 0){' +
+            'var selectedItem =  document.getElementsByClassName("item active")[0].childNodes[1].childNodes[0].innerHTML;' +
+            'element.href = element.href + document.getElementsByClassName("item active")[0].childNodes[1].childNodes[0].innerHTML;' +
+            'return true;' +
+            '}else{' +
+            'return false;' +
+            '}' +
+            '}' +
+            '</script>' +
             '<style>' +
             '.carousel-inner > .item > img,' +
             '.carousel-inner > .item > a > img {' +
@@ -117,10 +131,10 @@ function showImagesGallery(response) {
             '}' +
             '</style>' +
             '</head>' +
-            '<body style="padding-top: 70px;">' +
-            '<nav class="navbar navbar-default navbar-fixed-top text-center"> <div class=" text-center" style="margin-top: 15px;">Simple Image Gallery</div></nav>' +
+            '<body style="padding-top: 200px;">' +
+            '<nav class="navbar navbar-default navbar-fixed-top text-center" style="height: 120px;"> <div class=" text-center" style="margin-top: 25px;"><strong style="font-size: 40px;">Simple Image Gallery</strong></div></nav>' +
             '<div class="container">' +
-            '<div  id="myCarousel" class="carousel slide" data-ride="carousel">' +
+            '<div  id="myCarousel" class="carousel slide" data-ride="carousel" ' + galleryHideStatus + '>' +
             '<!-- Indicators -->' +
             '<ol class="carousel-indicators">' + carouselIndicatorsInnerHTML + '</ol>' +
             ' <!-- Wrapper for slides -->' +
@@ -134,10 +148,14 @@ function showImagesGallery(response) {
             '<span class="sr-only">Next</span>' +
             '</a>' +
             '</div>' +
+            '<div class="alert alert-warning" ' + alertHideStatus + ' >' +
+            '<div class="text-center"><strong  style="font-size: 50px;">Gallery is empty.</strong></div>' +
+            '</div>' +
             '</div>' +
             '<hr style=" border-style: solid none;border-width: 1px 0;">' +
             '<div class="container text-center">' +
-            '<a class="btn btn-info" style="width: 500px; role="button" href="/">Home</a>' +
+            '<a class="btn btn-info"  style="width: 300px;height: 80px; margin-right: 5px; font-size: 40px;font-weight: bold" role="button" href="/">Home</a>' +
+            '<a class="btn btn-danger"  style="width: 300px;height: 80px; margin-left: 5px; font-size: 40px;font-weight: bold" role="button" href="/deleteImage?Image=" onclick="return getSelectedImageInCarousel(this);">Delete</a>' +
             '</div>' +
             '</body>';
         response.writeHead(200, {'Content-type': 'text/html'});
@@ -145,10 +163,11 @@ function showImagesGallery(response) {
     });
 }
 
+
 function getAllImagesFromDirectory(imageDir, callback) {
     var files = [];
     fs.readdir(imageDir, function (err, list) {
-        if (list.length > 0 ) {
+        if (list.length > 0) {
             for (var i = 0; i < list.length; i++) {
                 if (imageTypes.indexOf(path.extname(list[i])) >= 0) { //Type checking
                     files.push(list[i]); // Storing Image
@@ -167,7 +186,34 @@ function showImage(response, request) {
     fs.createReadStream("./images/" + params.Image).pipe(response);
 }
 
+function deleteImage(response, request) {
+    var query = url.parse(request.url).query,
+        params = querystring.parse(query);
+    fs.unlink("./images/" + params.Image); //removing image from gallery
+    body = '<html>' +
+        '<head>' +
+        '<meta http-equiv="content-type" content="text/html" charset="UTF-8" />' +
+        '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">' +
+        '</head>' +
+        '<body style="padding-top: 200px;">' +
+        '<nav class="navbar navbar-default navbar-fixed-top text-center" style="height: 120px;"> <div class=" text-center" style="margin-top: 15px;"></div></nav>' +
+        '<div class="container text-center">' +
+        '<div class="alert alert-success">' +
+        '<strong  style="font-size: 50px;">' +
+        'Image "' + params.Image + '" Has been removed from gallery.' +
+        '</strong>' +
+        '</div>' +
+        '<hr style=" border-style: solid none;border-width: 1px 0;">' +
+        '<a class="btn btn-info" style="width: 300px;height: 80px; margin-right: 5px; font-size: 40px;font-weight: bold"  role="button" href="/">Home</a>' +
+        '<a class="btn btn-info" style="width: 300px;height: 80px; margin-left: 5px; font-size: 40px;font-weight: bold"  role="button" href="/showImagesGallery">Show Gallery</a>' +
+        '</div>' +
+        '</body>';
+    response.writeHead(200, {'Content-type': 'text/html'});
+    response.end(body);
+}
+
 exports.showImagesGallery = showImagesGallery;
 exports.start = start;
 exports.upload = upload;
 exports.showImage = showImage;
+exports.deleteImage = deleteImage;

@@ -8,5 +8,6 @@ handle["/start"] = requestHandlers.start;
 handle["/upload"] = requestHandlers.upload;
 handle["/showImage"] = requestHandlers.showImage;
 handle["/showImagesGallery"]=requestHandlers.showImagesGallery;
+handle["/deleteImage"]=requestHandlers.deleteImage;
 
 server.start(router.route,handle);
