@@ -4,7 +4,7 @@ var querystring = require("querystring"),
     path = require('path'),
     formidable = require("formidable"),
     mv = require('mv'),
-    imageTypes = ['.png', '.jpg', 'gif'];
+    imageTypes = ['.png', '.jpg', '.gif'];
 
 
 function start(response) {
