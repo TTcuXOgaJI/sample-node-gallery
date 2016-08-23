@@ -4,6 +4,7 @@
   "description": "sample image gallery",
   "main": "index.js",
   "dependencies": {
+    "dom-to-string": "^1.0.0",
     "formidable": "^1.0.17",
     "mv": "*"
   },
@@ -13,5 +14,13 @@
     "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TTcuXOgaJI/sample-node-gallery.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TTcuXOgaJI/sample-node-gallery/issues"
+  },
+  "homepage": "https://github.com/TTcuXOgaJI/sample-node-gallery#readme"
 }
