@@ -7,7 +7,7 @@
     "dom-to-string": "^1.0.0",
     "formidable": "^1.0.17",
     "mv": "*",
-    "jsdom":"*"
+    "jsdom":"^9.4.2"
   },
   "devDependencies": {},
   "scripts": {
