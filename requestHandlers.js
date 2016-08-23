@@ -43,15 +43,17 @@ function start(response) {
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write(body);
     response.end();
-
 }
 
+/**
+ * Handler for favicon request.
+ * @param response
+ */
 function favicon(response) {
     console.log("Request handler 'favicon' was called.");
     var img = fs.readFileSync('./favicon/favicon.ico');
     response.writeHead(200, {"Content-Type": "image/x-icon"});
     response.end(img,'binary');
-
 }
 
 /**
