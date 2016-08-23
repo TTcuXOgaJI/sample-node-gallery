@@ -6,7 +6,8 @@
   "dependencies": {
     "dom-to-string": "^1.0.0",
     "formidable": "^1.0.17",
-    "mv": "*"
+    "mv": "*",
+    "jsdom":"*"
   },
   "devDependencies": {},
   "scripts": {
