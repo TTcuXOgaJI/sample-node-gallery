@@ -9,5 +9,5 @@ handle["/upload"] = requestHandlers.upload;
 handle["/showImage"] = requestHandlers.showImage;
 handle["/showImagesGallery"]=requestHandlers.showImagesGallery;
 handle["/deleteImage"]=requestHandlers.deleteImage;
-
+handle["/favicon.ico"]=requestHandlers.favicon;
 server.start(router.route,handle);

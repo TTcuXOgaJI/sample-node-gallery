@@ -46,6 +46,14 @@ function start(response) {
 
 }
 
+function favicon(response) {
+    console.log("Request handler 'favicon' was called.");
+    var img = fs.readFileSync('./favicon/favicon.ico');
+    response.writeHead(200, {"Content-Type": "image/x-icon"});
+    response.end(img,'binary');
+
+}
+
 /**
  * Handler for uploading new image request
  * @param response
@@ -101,6 +109,7 @@ function upload(response, request) {
  * @param response
  */
 function showImagesGallery(response) {
+    console.log("Request handler 'showImageGallery' was called.");
     var imageDir = "./images/",
         galleryHideStatus = "hidden",
         alertHideStatus = "";
@@ -205,6 +214,7 @@ function getAllImagesFromDirectory(imageDir, callback) {
  * @param request
  */
 function showImage(response, request) {
+    console.log("Request handler 'showImage' was called.");
     var query = url.parse(request.url).query,
         params = querystring.parse(query);
     response.writeHead(200, {"Content-Type": "image/png"});
@@ -217,6 +227,7 @@ function showImage(response, request) {
  * @param request
  */
 function deleteImage(response, request) {
+    console.log("Request handler 'deleteImage' was called.");
     var query = url.parse(request.url).query,
         params = querystring.parse(query);
     fs.unlink("./images/" + params.Image); //removing image from gallery
@@ -247,3 +258,4 @@ exports.start = start;
 exports.upload = upload;
 exports.showImage = showImage;
 exports.deleteImage = deleteImage;
+exports.favicon = favicon;
